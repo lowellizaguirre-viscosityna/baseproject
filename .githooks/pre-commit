@@ -1,0 +1,36 @@
+#!/bin/bash
+# Project pre-commit hook. Enable once per clone:
+#   git config core.hooksPath .githooks
+# (or `make hooks`, which also sets up the changelog and seeding hooks)
+
+set -uo pipefail
+root="$(git rev-parse --show-toplevel)"
+fail=0
+
+# 1. Encoding: no UTF-16, no stray BOMs, no CRLF in shell scripts.
+if [ -x "$root/scripts/check-encoding.sh" ]; then
+    if ! "$root/scripts/check-encoding.sh" --staged --quiet; then
+        echo
+        echo "Encoding check failed. See docs/standards/encoding.md"
+        echo "Fix staged files with:  ./scripts/fix-encoding.sh --apply"
+        echo "Then re-stage:          git add -u"
+        fail=1
+    fi
+fi
+
+# 2. .env.example documents every key the code reads.
+if [ -x "$root/scripts/check-env-example.sh" ]; then
+    "$root/scripts/check-env-example.sh" >/dev/null 2>&1 || {
+        echo "Undocumented env var(s). Run: ./scripts/check-env-example.sh"
+        fail=1
+    }
+fi
+
+# 3. No secrets staged. Advisory patterns, not a replacement for a real scanner.
+if git diff --cached --name-only -z | grep -zqE '(^|/)\.env(\.|$)|\.(pem|key|pfx|p12|kdbx)$'; then
+    echo "Refusing to commit what looks like a secret or credential file."
+    echo "If it is genuinely safe, commit with --no-verify and say why in the message."
+    fail=1
+fi
+
+exit "$fail"

@@ -1,0 +1,207 @@
+# ─── Canonical .gitignore ────────────────────────────────────────────────────
+# Seeded into new projects from baseproject. Safe to extend per project; put
+# project-specific rules under the "Project-specific" heading at the bottom so
+# merges and drift reports stay readable.
+#
+# Deliberate non-rule: there is NO blanket `*.zip`. Archive and data projects
+# keep vendor downloads, exports, and corpora as .zip on purpose. Build-output
+# archives are ignored by path and by name pattern instead (see Artifacts).
+
+# ─── Dependencies ────────────────────────────────────────────────────────────
+node_modules/
+bower_components/
+jspm_packages/
+.pnp/
+.pnp.js
+vendor/
+packages/*/node_modules/
+
+# Python environments
+.venv/
+venv/
+env/
+ENV/
+.virtualenv/
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+.eggs/
+*.egg-info/
+*.egg
+
+# ─── Build output ────────────────────────────────────────────────────────────
+dist/
+build/
+out/
+.next/
+.nuxt/
+.svelte-kit/
+.turbo/
+.parcel-cache/
+target/
+bin/
+obj/
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+*.class
+*.jar
+*.war
+
+# .NET / SQL Server project output
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+*.user
+*.suo
+*.userprefs
+*.dbmdl
+*.jfm
+*.dacpac
+*.ispac
+
+# ─── Artifacts: build-output archives and savepoints ─────────────────────────
+# Named patterns only — never a bare *.zip. See the note at the top.
+dist/**/*.zip
+build/**/*.zip
+*-savepoint*.zip
+*_savepoint*.zip
+*-savepoint*/
+*_savepoint*/
+*savelpoint*.zip
+*-backup-[0-9]*.zip
+*_backup_[0-9]*.zip
+*-snapshot-[0-9]*.zip
+release/*.zip
+artifacts/
+*.tar.gz.part
+*.zip.part
+
+# ─── Logs and diagnostics ────────────────────────────────────────────────────
+# Per docs/standards/logging.md, logs are written to a per-OS app-data dir, but
+# a local LOG_DIR often lands here. Never commit logs; never commit bundles.
+logs/
+*.log
+*.jsonl.gz
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+support-*.zip
+diagnostics-*.zip
+crash-*.dmp
+core
+core.[0-9]*
+
+# Exception: the audit log policy may require retaining audit files. If a
+# project commits them deliberately, un-ignore explicitly:
+# !audit/audit.jsonl
+
+# ─── Secrets and credentials ─────────────────────────────────────────────────
+# Belt and braces; docs/standards/security.md is the actual policy. .env.example
+# is the only env file that belongs in the repo.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+*.keystore
+*.jks
+id_rsa
+id_ed25519
+*.ppk
+credentials
+credentials.json
+secrets.json
+appsettings.*.local.json
+.netrc
+.pgpass
+*.kdbx
+*.sqlite-journal
+.aws/
+.azure/
+gcloud-key*.json
+service-account*.json
+
+# ─── Caches and test output ──────────────────────────────────────────────────
+.cache/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+coverage/
+htmlcov/
+*.cover
+.nyc_output/
+test-results/
+playwright-report/
+.eslintcache
+.stylelintcache
+*.tsbuildinfo
+
+# ─── Editor and OS ───────────────────────────────────────────────────────────
+# .vscode is partially committed on purpose: launch configs and shared settings
+# are part of onboarding (docs/standards/onboarding.md). Personal state is not.
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# ─── Temporary ───────────────────────────────────────────────────────────────
+tmp/
+temp/
+*.tmp
+*.temp
+*.orig
+*.rej
+*.bak
+*~orig
+.#*
+\#*#
+
+# ─── Large local data (opt in deliberately) ──────────────────────────────────
+# Database and VM images are almost never meant for git. Un-ignore a specific
+# file if a project genuinely needs one committed.
+*.mdf
+*.ldf
+*.ndf
+*.bacpac
+*.vhd
+*.vhdx
+*.vmdk
+*.iso
+*.sqlite
+*.sqlite3
+*.db-shm
+*.db-wal
+
+# ─── Project-specific ────────────────────────────────────────────────────────
+# Add rules below this line.

@@ -1,0 +1,121 @@
+# ─── Canonical .gitattributes ────────────────────────────────────────────────
+# Normalize line endings and stop git guessing which files are text.
+# Policy and rationale: docs/standards/encoding.md
+
+# Default: treat as text, store LF in the repo, check out native.
+* text=auto eol=lf
+
+# ─── Always LF, even on Windows ──────────────────────────────────────────────
+# CRLF here produces "/bin/bash^M: bad interpreter".
+*.sh        text eol=lf
+*.bash      text eol=lf
+*.zsh       text eol=lf
+Makefile    text eol=lf
+makefile    text eol=lf
+*.mk        text eol=lf
+Dockerfile  text eol=lf
+*.dockerfile text eol=lf
+.gitattributes text eol=lf
+.gitignore  text eol=lf
+.editorconfig text eol=lf
+*.yml       text eol=lf
+*.yaml      text eol=lf
+
+# ─── Windows-native scripting: CRLF on checkout ──────────────────────────────
+# .bat/.cmd genuinely misbehave with LF; PowerShell tooling is CRLF by convention.
+*.ps1       text eol=crlf
+*.psm1      text eol=crlf
+*.psd1      text eol=crlf
+*.ps1xml    text eol=crlf
+*.bat       text eol=crlf
+*.cmd       text eol=crlf
+*.reg       text eol=crlf
+*.vbs       text eol=crlf
+*.sln       text eol=crlf
+*.csproj    text eol=crlf
+*.sqlproj   text eol=crlf
+
+# ─── Text, normalized ────────────────────────────────────────────────────────
+*.sql       text
+*.py        text
+*.ts        text
+*.tsx       text
+*.js        text
+*.jsx       text
+*.json      text
+*.jsonc     text
+*.md        text
+*.txt       text
+*.css       text
+*.scss      text
+*.html      text
+*.xml       text
+*.csv       text
+*.tsv       text
+*.toml      text
+*.ini       text
+*.cs        text
+*.go        text
+*.rs        text
+*.java      text
+
+# ─── Binary: never normalize, never diff as text ─────────────────────────────
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.ico       binary
+*.webp      binary
+*.svgz      binary
+*.pdf       binary
+*.zip       binary
+*.7z        binary
+*.gz        binary
+*.tgz       binary
+*.bz2       binary
+*.xz        binary
+*.rar       binary
+*.jar       binary
+*.war       binary
+*.dll       binary
+*.exe       binary
+*.so        binary
+*.dylib     binary
+*.pyd       binary
+*.pyc       binary
+*.woff      binary
+*.woff2     binary
+*.ttf       binary
+*.otf       binary
+*.eot       binary
+*.mp3       binary
+*.mp4       binary
+*.mov       binary
+*.xlsx      binary
+*.xlsm      binary
+*.docx      binary
+*.pptx      binary
+*.bacpac    binary
+*.dacpac    binary
+*.ispac     binary
+*.mdf       binary
+*.ldf       binary
+*.bak       binary
+*.kdbx      binary
+*.iso       binary
+*.vhd       binary
+*.vhdx      binary
+*.sqlite    binary
+*.sqlite3   binary
+*.db        binary
+
+# ─── Diff helpers ────────────────────────────────────────────────────────────
+# Lockfiles: keep them in the repo but out of the way in review.
+package-lock.json  -diff linguist-generated
+yarn.lock          -diff linguist-generated
+pnpm-lock.yaml     -diff linguist-generated
+poetry.lock        -diff linguist-generated
+
+# Keep generated and vendored code out of language stats.
+dist/*      linguist-generated
+vendor/*    linguist-vendored
