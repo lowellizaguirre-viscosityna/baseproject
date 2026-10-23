@@ -18,6 +18,11 @@
   is a secret. A key absent from `.env.example` fails review.
 - Secrets never have defaults, never appear in logs, never appear in error messages, and
   are tagged in the schema so the redactor and the support bundle know to mask them.
+- Secret values in local env files are encrypted at rest as `encrypted:<base64>` and
+  decrypted transparently on read; the config loader runs each value through
+  `Unprotect-EnvSecret` (see [`scripts/env-secrets.ps1`](../../scripts/env-secrets.ps1)
+  and [security.md](security.md)) before validation, so plain and encrypted values are
+  interchangeable.
 - On start, log `config.loaded` with non-secret values and a hash fingerprint of the
   whole effective config — so you can tell two environments apart without exposing them.
 - `app config show` prints the effective, redacted config and where each value came from
