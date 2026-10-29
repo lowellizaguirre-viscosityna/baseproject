@@ -3,6 +3,22 @@
 Baseline conventions for this project. Every standard below is mandatory unless a
 file in `docs/standards/` says otherwise for a specific subsystem.
 
+## Project shape
+
+Declare the shape at bootstrap; it decides which non-negotiables apply.
+
+- **app / web / service** — has a UI, an API, or a long-running process, and a deploy
+  target. All non-negotiables below apply.
+- **toolbox / ops** — a set of scripts, maintenance utilities, or one-off operations run
+  by hand against a machine or an external system. No UI, no API, no deploy. The app-only
+  non-negotiables (2, 3, 4, 5, 7) do **not** apply; in their place, every operation is
+  recorded in `ACTIVITY.md`. See [docs/standards/activity-log.md](docs/standards/activity-log.md).
+
+**This project's shape:** _app_ (change at bootstrap).
+
+Non-negotiables 1 (logging), 6 (changelogs), and the encoding/ADR conventions apply to
+every shape. The rest apply to apps; a toolbox swaps them for the activity log.
+
 ## Non-negotiables
 
 1. **Everything is logged.** No silent failures, no bare `catch {}`. See
@@ -46,7 +62,8 @@ file in `docs/standards/` says otherwise for a specific subsystem.
 | [.gitattributes](.gitattributes) | Line-ending normalization, binary declarations |
 | [.editorconfig](.editorconfig) | charset/EOL enforced in the editor |
 | [changelog.md](docs/standards/changelog.md) | Dual changelog, enforced every change |
-| [build-deploy.md](docs/standards/build-deploy.md) | Rebuild + redeploy every artifact |
+| [activity-log.md](docs/standards/activity-log.md) | Operation/incident log for toolbox & ops projects |
+| [build-deploy.md](docs/standards/build-deploy.md) | Rebuild + redeploy every artifact (app shape) |
 | [adr/README.md](docs/adr/README.md) | Architecture decision records |
 
 ## Agent rules

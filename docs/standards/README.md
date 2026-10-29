@@ -34,6 +34,7 @@ area; the index with the non-negotiables is in [CLAUDE.md](../../CLAUDE.md).
 | [data.md](data.md) | Migrations, backups, destructive ops, retention |
 | [security.md](security.md) | Authz, validation, secrets, dependencies |
 | [changelog.md](changelog.md) | Public + developer changelogs, enforced in CI |
+| [activity-log.md](activity-log.md) | `ACTIVITY.md` operation/incident log for toolbox & ops projects (not an app) |
 | [build-deploy.md](build-deploy.md) | One ship entrypoint (`make ship` / `ship.sh` / `npm run ship`): rebuild, redeploy, verify |
 | [release.md](release.md) | Versioning, release steps, rollback |
 | [onboarding.md](onboarding.md) | 10-minute setup, standard make targets, `make doctor` |

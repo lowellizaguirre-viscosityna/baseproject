@@ -9,6 +9,8 @@ Versioning: [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- Projects that are not an app or web service (a toolbox of scripts or one-off operations)
+  now have a defined way to track what was done over time: a running activity log.
 ### Changed
 - Build/deploy standard no longer assumes `make`. A project now picks one "ship"
   entrypoint that fits its stack (Make, Docker Compose, npm, …); the rebuild →
