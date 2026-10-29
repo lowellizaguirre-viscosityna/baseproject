@@ -34,7 +34,7 @@ area; the index with the non-negotiables is in [CLAUDE.md](../../CLAUDE.md).
 | [data.md](data.md) | Migrations, backups, destructive ops, retention |
 | [security.md](security.md) | Authz, validation, secrets, dependencies |
 | [changelog.md](changelog.md) | Public + developer changelogs, enforced in CI |
-| [build-deploy.md](build-deploy.md) | `make ship`: rebuild, redeploy, verify every artifact |
+| [build-deploy.md](build-deploy.md) | One ship entrypoint (`make ship` / `ship.sh` / `npm run ship`): rebuild, redeploy, verify |
 | [release.md](release.md) | Versioning, release steps, rollback |
 | [onboarding.md](onboarding.md) | 10-minute setup, standard make targets, `make doctor` |
 | [encoding.md](encoding.md) | UTF-8 everywhere, the PowerShell BOM exception, line endings |

@@ -54,8 +54,12 @@ file in `docs/standards/` says otherwise for a specific subsystem.
 - Read the relevant standard before writing code in that area.
 - When you add an endpoint: add the CLI command, the debug annotation, the audit log
   line, and a test. An endpoint without all four is incomplete.
-- Every change you make ends with: both changelogs updated in the same commit, then
-  `make ship` run so Docker images, the site, and deployment zips are current and verified.
+- Every change you make ends with: both changelogs updated in the same commit, then the
+  project's **one ship entrypoint** run so every artifact is current and verified. What
+  that entrypoint is depends on the stack — `make ship` for a Make-based project,
+  `./scripts/ship.sh` (wrapping `docker compose`) for a containerized/web one, `npm run
+  ship` for Node, etc. Pick one at bootstrap and name it here; don't assume `make`. See
+  [docs/standards/build-deploy.md](docs/standards/build-deploy.md).
 - Never leave a built artifact stale. If you changed code, rebuild and redeploy it.
 - Reading a new env var means documenting it in `.env.example` in the same change.
 - Never write a text file as UTF-16. PowerShell's `>`, `Out-File` and `Export-Csv` default

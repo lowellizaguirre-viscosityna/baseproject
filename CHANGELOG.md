@@ -10,6 +10,9 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 ### Added
 ### Changed
+- Build/deploy standard no longer assumes `make`. A project now picks one "ship"
+  entrypoint that fits its stack (Make, Docker Compose, npm, …); the rebuild →
+  redeploy → verify guarantee is unchanged.
 ### Deprecated
 ### Removed
 ### Fixed
