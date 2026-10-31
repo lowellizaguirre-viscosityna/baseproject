@@ -1,84 +1,36 @@
-# Project Instructions
+# How to work in this project
 
-Baseline conventions for this project. Every standard below is mandatory unless a
-file in `docs/standards/` says otherwise for a specific subsystem.
+This repo uses a lightweight "resume kit" so an AI assistant (and any human) can pick
+up weeks later without re-reading everything. Three files carry the memory:
 
-## Project shape
+| File | What it holds | How it's written |
+| --- | --- | --- |
+| [STATE.md](STATE.md) | Where we left off *right now*: current focus, next steps, open questions, how to run things. | **Overwritten** to reflect the present. Always current, never a history. |
+| [JOURNAL.md](JOURNAL.md) | What happened, newest first: one dated entry per working session. | **Append-only.** Never edit or delete past entries. |
+| [DECISIONS.md](DECISIONS.md) | Durable "why we chose X" notes that outlive any one session. | Append a numbered entry when a real decision is made. |
 
-Declare the shape at bootstrap; it decides which non-negotiables apply.
+## At the start of every session
 
-- **app / web / service** — has a UI, an API, or a long-running process, and a deploy
-  target. All non-negotiables below apply.
-- **toolbox / ops** — a set of scripts, maintenance utilities, or one-off operations run
-  by hand against a machine or an external system. No UI, no API, no deploy. The app-only
-  non-negotiables (2, 3, 4, 5, 7) do **not** apply; in their place, every operation is
-  recorded in `ACTIVITY.md`. See [docs/standards/activity-log.md](docs/standards/activity-log.md).
+1. Read [STATE.md](STATE.md) first — it's the single source of "what now".
+2. Skim the top few entries of [JOURNAL.md](JOURNAL.md) for recent context.
+3. Check [DECISIONS.md](DECISIONS.md) before changing anything architectural, so you
+   don't reopen a settled choice (or do so knowingly).
 
-**This project's shape:** _app_ (change at bootstrap).
+## At the end of every session (before you consider the work done)
 
-Non-negotiables 1 (logging), 6 (changelogs), and the encoding/ADR conventions apply to
-every shape. The rest apply to apps; a toolbox swaps them for the activity log.
+1. **Rewrite [STATE.md](STATE.md)** so it describes the project as it stands now:
+   what's done, what's next, what's unresolved. Delete anything no longer true.
+2. **Prepend a new entry to [JOURNAL.md](JOURNAL.md)** (newest on top) using the
+   template in that file: date, what changed, why, and anything the next session
+   needs to know.
+3. If a lasting decision was made, **add an entry to [DECISIONS.md](DECISIONS.md)**.
+4. Commit all of it together with the code so the memory and the work never drift apart.
 
-## Non-negotiables
+## Principles
 
-1. **Everything is logged.** No silent failures, no bare `catch {}`. See
-   [docs/standards/logging.md](docs/standards/logging.md).
-2. **The UI never does work.** Every user action calls an API endpoint; the UI only
-   renders the result. See [docs/standards/ui-api-contract.md](docs/standards/ui-api-contract.md).
-3. **Every API endpoint is reachable from the command line.** If a button can do it,
-   `curl` and the project CLI can do it too. See [docs/standards/cli-parity.md](docs/standards/cli-parity.md).
-4. **Debug mode is built in, not bolted on.** Every panel and control self-identifies
-   which endpoint it calls. See [docs/standards/debug-mode.md](docs/standards/debug-mode.md).
-5. **Every request carries a correlation ID** from click to log line.
-   See [docs/standards/correlation-ids.md](docs/standards/correlation-ids.md).
-6. **Every change updates both changelogs** in the same commit — public and developer.
-   See [docs/standards/changelog.md](docs/standards/changelog.md).
-7. **Every change is rebuilt and redeployed** to the dev target and verified running.
-   See [docs/standards/build-deploy.md](docs/standards/build-deploy.md).
-
-## Standards index
-
-| Doc | Covers |
-| --- | --- |
-| [logging.md](docs/standards/logging.md) | Log levels, structure, rotation, redaction |
-| [diagnostics.md](docs/standards/diagnostics.md) | Export / open / email logs, support bundles |
-| [ui-api-contract.md](docs/standards/ui-api-contract.md) | UI→API rule, no business logic in views |
-| [cli-parity.md](docs/standards/cli-parity.md) | CLI mirrors every endpoint |
-| [debug-mode.md](docs/standards/debug-mode.md) | In-UI inspection overlay |
-| [correlation-ids.md](docs/standards/correlation-ids.md) | Request tracing end to end |
-| [errors.md](docs/standards/errors.md) | Error taxonomy, codes, user-facing messages |
-| [config.md](docs/standards/config.md) | Env vars, precedence, secrets |
-| [health.md](docs/standards/health.md) | Health, readiness, version, self-test |
-| [testing.md](docs/standards/testing.md) | Test layers and what each must cover |
-| [feature-flags.md](docs/standards/feature-flags.md) | Flags, kill switches |
-| [security.md](docs/standards/security.md) | Authn/z, input validation, secret handling |
-| [observability.md](docs/standards/observability.md) | Metrics, traces, audit trail |
-| [data.md](docs/standards/data.md) | Migrations, backups, destructive-op rules |
-| [release.md](docs/standards/release.md) | Versioning, changelog, rollback |
-| [onboarding.md](docs/standards/onboarding.md) | Clone → running in under 10 minutes |
-| [.gitignore](.gitignore) | Canonical ignore rules (no blanket `*.zip`) |
-| [.env.example](.env.example) | Every config key, documented; the only committed env file |
-| [encoding.md](docs/standards/encoding.md) | UTF-8 everywhere; no UTF-16; line endings |
-| [.gitattributes](.gitattributes) | Line-ending normalization, binary declarations |
-| [.editorconfig](.editorconfig) | charset/EOL enforced in the editor |
-| [changelog.md](docs/standards/changelog.md) | Dual changelog, enforced every change |
-| [activity-log.md](docs/standards/activity-log.md) | Operation/incident log for toolbox & ops projects |
-| [build-deploy.md](docs/standards/build-deploy.md) | Rebuild + redeploy every artifact (app shape) |
-| [adr/README.md](docs/adr/README.md) | Architecture decision records |
-
-## Agent rules
-
-- Read the relevant standard before writing code in that area.
-- When you add an endpoint: add the CLI command, the debug annotation, the audit log
-  line, and a test. An endpoint without all four is incomplete.
-- Every change you make ends with: both changelogs updated in the same commit, then the
-  project's **one ship entrypoint** run so every artifact is current and verified. What
-  that entrypoint is depends on the stack — `make ship` for a Make-based project,
-  `./scripts/ship.sh` (wrapping `docker compose`) for a containerized/web one, `npm run
-  ship` for Node, etc. Pick one at bootstrap and name it here; don't assume `make`. See
-  [docs/standards/build-deploy.md](docs/standards/build-deploy.md).
-- Never leave a built artifact stale. If you changed code, rebuild and redeploy it.
-- Reading a new env var means documenting it in `.env.example` in the same change.
-- Never write a text file as UTF-16. PowerShell's `>`, `Out-File` and `Export-Csv` default
-  to UTF-16 on 5.1 — always pass `-Encoding utf8`.
-- When a standard is wrong, change the standard in the same PR — do not diverge silently.
+- STATE is the present, JOURNAL is the past, DECISIONS is the reasoning. Keep them
+  in their lanes.
+- Write for a reader who has forgotten everything — because in a few weeks, they have.
+- Prefer updating these files over writing new scattered notes. One place to look.
+- This kit assumes nothing about the stack (no build tool, deploy target, or language
+  baked in). Add project-specific conventions to this file as the project takes shape.
