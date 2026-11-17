@@ -13,6 +13,11 @@ What's different for you, in a sentence or two. No code, no file names.
 
 -->
 
+## 2026-11-17 12:20 — Added a project overview
+
+The project now has a README explaining what this template is for and how its files fit
+together.
+
 ## 2026-11-17 12:00 — Added a dual changelog and shared agent instructions
 
 The project now keeps a running list of changes you can read, and the assistant follows

@@ -20,7 +20,7 @@ _What we're working on right now._
 - Nothing in progress. Repo is a fresh template ready to be cloned/forked.
 - Resume kit now has 5 memory files: STATE, JOURNAL, DECISIONS, plus a dual changelog
   (CHANGELOG.md for end users, CHANGELOG-DEV.md for developers). Workflow for all engines
-  lives in AGENTS.md; CLAUDE.md points to it.
+  lives in AGENTS.md; CLAUDE.md points to it. README.md is the top-level overview.
 
 ## Next steps
 

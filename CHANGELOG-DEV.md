@@ -16,6 +16,15 @@
 
 -->
 
+## 2026-11-17 12:20 — Add README describing the base project
+
+**Request:** Add a README.md describing the purpose of this base project.
+**Changed:** Created `README.md` — explains the resume-kit purpose, a table of all the
+memory files and their roles, the start/after-change/end-of-session rhythm, and how to
+adopt the template for a real project. Added paired changelog entries.
+**Why:** The repo had no top-level entry point; a README is the conventional first thing a
+visitor (human or AI) reads, and it ties the file set together at a glance.
+
 ## 2026-11-17 12:00 — Add shared agent instructions + dual changelog to the resume kit
 
 **Request:** Maintainer wanted (1) a separate markdown for Codex / other agents, since

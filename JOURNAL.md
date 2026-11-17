@@ -15,6 +15,14 @@
 
 -->
 
+## 2026-11-17 — Added README overview
+
+**Did:** Added `README.md` as the top-level entry point: purpose of the template, a table
+of all memory files and their roles, the session rhythm, and how to adopt it for a real
+project. Logged paired changelog entries.
+**Why:** The repo had no front-door document explaining what it is and how the pieces fit.
+**Next:** Unchanged — use the kit on a real project.
+
 ## 2026-11-17 — Added shared agent instructions + dual changelog
 
 **Did:** Added `AGENTS.md` as the single source of truth for the working workflow and
