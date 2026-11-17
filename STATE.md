@@ -3,7 +3,7 @@
 > The present tense of this project. Overwrite this file at the end of each session
 > so it's always true *right now*. History goes in [JOURNAL.md](JOURNAL.md), not here.
 
-**Last updated:** 2026-10-31
+**Last updated:** 2026-11-17
 
 ## What this project is
 
@@ -18,6 +18,9 @@ project begins.
 _What we're working on right now._
 
 - Nothing in progress. Repo is a fresh template ready to be cloned/forked.
+- Resume kit now has 5 memory files: STATE, JOURNAL, DECISIONS, plus a dual changelog
+  (CHANGELOG.md for end users, CHANGELOG-DEV.md for developers). Workflow for all engines
+  lives in AGENTS.md; CLAUDE.md points to it.
 
 ## Next steps
 
@@ -25,6 +28,7 @@ _The concrete things to do next, in order. The first thing you'd pick up._
 
 1. When starting a real project here: fill in "What this project is" above.
 2. Record the first real decision (stack, structure) in [DECISIONS.md](DECISIONS.md).
+3. As changes are made, keep the paired changelog entries flowing (see [AGENTS.md](AGENTS.md)).
 
 ## Open questions
 

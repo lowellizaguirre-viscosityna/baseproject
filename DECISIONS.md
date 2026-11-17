@@ -26,3 +26,18 @@ nothing external. Rejected: a heavy standards framework (over-fit to apps, the p
 baseline's failing) and relying on Claude's private memory dir (not portable, invisible
 to humans and other tools).
 **Status:** accepted
+
+## 002. One AGENTS.md for all engines, plus a dual changelog
+
+**Date:** 2026-11-17
+**Decision:** Put the working workflow in `AGENTS.md` (the cross-agent convention) as the
+single source of truth, and make `CLAUDE.md` a thin pointer to it. Add two append-only,
+newest-first changelogs written after every change: `CHANGELOG.md` (end-user, plain,
+app-surfaceable) and `CHANGELOG-DEV.md` (developer: request + change + why), paired by an
+identical timestamp.
+**Why:** The maintainer often switches engines mid-day after hitting a usage limit; a
+single AGENTS.md makes handoffs seamless and avoids drift between duplicated per-engine
+instruction files. Rejected: maintaining separate full instructions in CLAUDE.md and a
+Codex file (they would diverge). Splitting the changelog keeps shippable release notes
+free of internal detail while preserving full technical history alongside.
+**Status:** accepted

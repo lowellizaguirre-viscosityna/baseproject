@@ -15,6 +15,23 @@
 
 -->
 
+## 2026-11-17 — Added shared agent instructions + dual changelog
+
+**Did:** Added `AGENTS.md` as the single source of truth for the working workflow and
+reduced `CLAUDE.md` to a pointer to it, so Claude, Codex, and any other engine follow the
+same rules. Added a dual changelog: `CHANGELOG.md` (end-user, plain language, safe to
+surface inside an app) and `CHANGELOG-DEV.md` (developer detail: request + change + why),
+both append-only and paired by timestamp. Documented the "after every change" changelog
+habit in AGENTS.md and logged decision #002.
+**Why:** The maintainer frequently switches engines mid-day after hitting a usage limit;
+one AGENTS.md avoids drift between per-engine instructions. The split changelog lets a
+project ship release notes without leaking internal detail while keeping full technical
+history.
+**Next:** Use it on the first real project. The changelog habit is only as good as the
+discipline of writing a paired entry after each change.
+**Notes:** AGENTS.md is the emerging cross-agent convention; keeping CLAUDE.md as a thin
+pointer means no second copy to maintain.
+
 ## 2026-10-31 — Established the resume kit
 
 **Did:** Cleared out the old app-oriented baseline (standards docs, encoding scripts,
