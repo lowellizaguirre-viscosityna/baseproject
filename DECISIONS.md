@@ -27,6 +27,22 @@ baseline's failing) and relying on Claude's private memory dir (not portable, in
 to humans and other tools).
 **Status:** accepted
 
+## 003. Gates protect operation, not the sandbox
+
+**Date:** 2026-11-18
+**Decision:** Add a standing principle to `AGENTS.md`: safety/governance/security/"best
+practice" gates must be scoped to *live operation* (real people, production, external
+action, irreversible steps), with an explicit no-gate lane for sandboxed work on past,
+public, synthetic, or non-personal data that sends and acts on nothing. Governance and
+hardening docs should state which lane each rule gates.
+**Why:** Surfaced by the BalamSentry project, which stalled on a self-imposed governance
+doc whose sign-off gated *all development* — including building the prototype needed to
+justify the sign-off. That catch-22 is a recurring, self-inflicted failure mode across
+the maintainer's many projects. Baking the rule into the kit makes future projects
+inherit correct gate placement by default. Rejected: treating it as a one-off fix in
+BalamSentry only (it would recur elsewhere).
+**Status:** accepted
+
 ## 002. One AGENTS.md for all engines, plus a dual changelog
 
 **Date:** 2026-11-17

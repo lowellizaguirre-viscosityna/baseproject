@@ -3,7 +3,7 @@
 > The present tense of this project. Overwrite this file at the end of each session
 > so it's always true *right now*. History goes in [JOURNAL.md](JOURNAL.md), not here.
 
-**Last updated:** 2026-11-17
+**Last updated:** 2026-11-18
 
 ## What this project is
 
@@ -21,6 +21,8 @@ _What we're working on right now._
 - Resume kit now has 5 memory files: STATE, JOURNAL, DECISIONS, plus a dual changelog
   (CHANGELOG.md for end users, CHANGELOG-DEV.md for developers). Workflow for all engines
   lives in AGENTS.md; CLAUDE.md points to it. README.md is the top-level overview.
+- AGENTS.md now carries the "gates protect operation, not the sandbox" principle
+  (decision #003). The kit has been adopted by its first real project, BalamSentry.
 
 ## Next steps
 

@@ -16,6 +16,19 @@
 
 -->
 
+## 2026-11-18 15:30 — Add "gates protect operation, not the sandbox" principle
+
+**Request:** Capture, as a short principle in the kit, the lesson from BalamSentry: a
+governance/safety gate should protect operation on real people and production, never the
+sandbox; a gate across development self-locks the project.
+**Changed:** Added a bullet to the Principles section of `AGENTS.md` defining the rule —
+scope gates to live operation, leave a no-gate lane for past/public/synthetic/non-personal
+sandbox work, and state which lane each rule gates in any governance/hardening doc. Logged
+decision #003 and paired changelog entries.
+**Why:** The catch-22 that stalled BalamSentry (sign-off gating the prototype that would
+justify the sign-off) is a recurring, self-inflicted failure mode. Putting the rule in the
+cross-engine source of truth makes every future project inherit correct gate placement.
+
 ## 2026-11-17 12:20 — Add README describing the base project
 
 **Request:** Add a README.md describing the purpose of this base project.

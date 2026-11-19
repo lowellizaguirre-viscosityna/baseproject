@@ -61,3 +61,14 @@ Keep the timestamps identical so the two files line up. Use the local date-time 
 - Prefer updating these files over writing new scattered notes. One place to look.
 - This kit assumes nothing about the stack (no build tool, deploy target, or language
   baked in). Add project-specific conventions to this file as the project takes shape.
+- **Gates protect operation, not the sandbox.** A safety, governance, security, or
+  "best practice" gate exists to control what touches **real people, production, or the
+  outside world** — not to block development itself. Scope every such gate to *live
+  operation* (real data, real users, deploys, external action, anything irreversible),
+  and explicitly leave a **no-gate lane for sandboxed work** on past, public, synthetic,
+  or non-personal data that sends nothing and acts on nothing. A gate placed across
+  development creates a catch-22: the working prototype that would justify the sign-off
+  can't be built because the sign-off hasn't happened — a common, self-inflicted way for
+  a project to stall. When you write a governance or hardening doc, state which lane each
+  rule gates. Keep aspirational best-practices as *operation* gates; never let them
+  become *build-time* requirements before there's anything to operate.

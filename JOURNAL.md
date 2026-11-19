@@ -15,6 +15,19 @@
 
 -->
 
+## 2026-11-18 — Added the "gates protect operation, not the sandbox" principle
+
+**Did:** Added a standing principle to `AGENTS.md` and logged decision #003: safety/
+governance gates must be scoped to live operation, with an explicit no-gate lane for
+sandboxed work on past/public/synthetic/non-personal data. Also deployed this kit into the
+BalamSentry project (seeded its STATE/JOURNAL/DECISIONS/CHANGELOGs with real state).
+**Why:** BalamSentry stalled on a self-imposed governance doc whose sign-off gated all
+development — a catch-22 that recurs across projects. The principle makes future projects
+inherit correct gate placement.
+**Next:** Unchanged — use the kit on real projects; watch whether the new principle gets
+applied when governance/hardening docs are written.
+**Notes:** BalamSentry is the first real project to adopt this kit end to end.
+
 ## 2026-11-17 — Added README overview
 
 **Did:** Added `README.md` as the top-level entry point: purpose of the template, a table

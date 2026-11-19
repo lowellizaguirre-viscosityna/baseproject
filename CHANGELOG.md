@@ -13,6 +13,12 @@ What's different for you, in a sentence or two. No code, no file names.
 
 -->
 
+## 2026-11-18 15:30 — Added a "gates protect operation, not the sandbox" working principle
+
+The assistant's working rules now include a principle that keeps safety and governance
+checks from accidentally blocking early development — they apply when real people or
+production are involved, not to sandboxed work on test data.
+
 ## 2026-11-17 12:20 — Added a project overview
 
 The project now has a README explaining what this template is for and how its files fit
